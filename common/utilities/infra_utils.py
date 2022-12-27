@@ -36,7 +36,7 @@ class InfrastructureUtils:
         logger = logging.getLogger(logger_name)
         if logger.hasHandlers():
             logger.handlers.clear()
-        file_handler = logging.FileHandler("logs/{0}.log".format(logger_name))
+        file_handler = logging.FileHandler("../../../logs/{0}.log".format(logger_name))
         formatter = logging.Formatter("%(asctime)s :%(levelname)s : %(message)s")
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
