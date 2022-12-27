@@ -4,5 +4,4 @@ assets
 reports/
 venv/
 .pytest_cache
-logs
 reports
