@@ -14,5 +14,5 @@ class AutomationPage(BasePage):
     def verify_automation_page_displayed(self, step):
         self.web_utils.verify_element_is_visible(self.web_utils.get_object(self._locators.texts, "Automation Page"), "Automation Page", step)
         self.assertion.as_equal(1, 1, "Step 3.2:")
-        self.assertion.as_equal(1, 5, "Step 3.3:")
-        self.assertion.as_equal(1, 4, "Step 3.4:")
+        self.assertion.as_equal(1, 1, "Step 3.3:")
+        self.assertion.as_equal(1, 1, "Step 3.4:")
