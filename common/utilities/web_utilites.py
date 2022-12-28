@@ -156,7 +156,7 @@ class WebElementUtils:
             expected_list:list = List which contains expected values to verify.
             actual_list:list = List which contains actual values to verify.
             step_num:str = Verification msg step number. Exmp: "03.01".
-            values_name:str = Name of the values to compose verification message. Exmp: ContextMenu, X-Axisi Labels ans etc.
+            values_name:str = Name of the values to compose verification message. Exmp: ContextMenu, X-Axisi Labels and etc.
             assert_type:str: Method of assert. Exmp: "eqaul" , "notin", "in"
             value_len:int: Length of the list values. List should contains only string values.
             slicing:tuple: Slicing index values to slice given list before verify
@@ -190,10 +190,9 @@ class WebElementUtils:
         else:
             raise NotImplemented
 
-    def validate_and_get_webdriver_object(self, css_locator, webdriver_object_name, parent_object=None,
-                                          timeout_=190, pause_time=1):
+    def validate_and_get_webdriver_object(self, css_locator, webdriver_object_name, parent_object=None):
         """
-        This function is used to validate the webdriver object
+        Description: This function is used to validate the webdriver object
         css_locator: css will be provided by User(#TableChart_1)
         webdriver_object_name: The meaningful and related name of the object will be provided by User.(Preview chart)
         """
@@ -208,11 +207,11 @@ class WebElementUtils:
             raise AttributeError(display_msg)
 
     def validate_and_get_webdriver_objects(self, css_locator, webdriver_objects_reference_name, parent_object=None):
-        '''
-        This function is used to verify the list of webdriver elements in the page
+        """
+        Description: This function is used to verify the list of webdriver elements in the page
         css_locator: css will be provided by User((#TableChart_1)
         webdriver_objects_reference_name : The meaningful and related name of the objects will be provided by User.(Preview chart)
-        '''
+        """
         if parent_object is not None:
             resp = parent_object.find_elements_by_css_selector(css_locator)
         else:
@@ -225,11 +224,11 @@ class WebElementUtils:
             return resp
 
     def validate_and_get_webdriver_object_using_locator(self, locator, webdriver_object_name, parent_object=None):
-        '''
-        This function is used to validate the webdriver object
+        """
+        Description: This function is used to validate the webdriver object
         css_locator: css will be provided by User(#TableChart_1)
-        webdriver_object_name: The meaningful and related name of the object will be provided by User.(Preview chart)
-        '''
+        webdriver_object_name: The meaningful and related name of the object will be provided by User
+        """
         try:
             if parent_object is not None:
                 return parent_object.find_element(*locator)
@@ -240,13 +239,12 @@ class WebElementUtils:
                 webdriver_object_name, locator)
             raise AttributeError(display_msg)
 
-    def validate_and_get_webdriver_objects_using_locator(self, locator, webdriver_objects_reference_name,
-                                                         parent_object=None):
-        '''
+    def validate_and_get_webdriver_objects_using_locator(self, locator, webdriver_objects_reference_name, parent_object=None):
+        """
         This function is used to verify the list of webdriver elements in the page
         css_locator: css will be provided by User((#TableChart_1)
         webdriver_objects_reference_name : The meaningful and related name of the objects will be provided by User.(Preview chart)
-        '''
+        """
         if parent_object is not None:
             resp = parent_object.find_elements(*locator)
         else:
@@ -259,6 +257,12 @@ class WebElementUtils:
             return resp
 
     def verify_element_is_visible(self, webelement, element_name, step_num):
+        """
+        :param webelement: Web Element which visibility check need to perform
+        :param element_name: Element name to check the visibility
+        :param step_num: Step Num for visibility check
+        :return: None
+        """
         status = webelement.is_displayed()
         msg = "Step {0}: Verify {1} is displayed".format(step_num, element_name)
         self._assert.as_equal(True, status, msg)

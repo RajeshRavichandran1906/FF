@@ -1,5 +1,5 @@
 class Constants:
-    browser = "chrome"
+    browser = "edge"
     url = "https://www.wikipedia.org/"
     email = "kplh983@astrazeneca.net"
     password = "Spiritual@being19"

@@ -10,4 +10,4 @@ from selenium import webdriver
 class DriverLauncher(object):
 
     def execute(self):
-        return webdriver.Firefox()
+        return webdriver.Edge()

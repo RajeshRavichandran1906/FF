@@ -1,7 +1,6 @@
 .idea/
 assets
 *__pycache__
-reports/
 venv/
 .pytest_cache
-reports
+geckodriver.log
