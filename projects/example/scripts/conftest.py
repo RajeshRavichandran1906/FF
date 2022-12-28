@@ -8,9 +8,7 @@ from common.webdriverfactory.WebDriverFactory import WebDriverFactory
 
 @pytest.fixture(scope="function")
 def setup_teardown():
-    browser = os.getenv("browser")
-    if browser is None:
-        browser = Constants.browser
+    browser = os.getenv("browser") if os.getenv("browser") is not None else Constants.browser
     infra_utils = InfrastructureUtils()
     Global_variables.test_case_name = os.environ.get('PYTEST_CURRENT_TEST').split(':')[-1].split(' ')[0]
     infra_utils.kill_browser_process()
