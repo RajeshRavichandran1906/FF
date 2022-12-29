@@ -121,10 +121,10 @@ class JavaScript:
         self._driver.execute_script(scroll_script_syntax, element_obj)
         time.sleep(wait_time)
 
-    def scroll_into_view_ifneeded(self, element_obj, wait_time=2):
+    def scroll_into_view_if_needed(self, element_obj, wait_time=2):
         """
         Description: This function scrolls and makes the object visible if it not visible
-        :usage : scroll_into_view_ifneeded(element_obj)
+        :usage : scroll_into_view_if_needed(element_obj)
         """
         scroll_script_syntax = 'arguments[0].scrollIntoViewIfNeeded()'
         self._driver.execute_script(scroll_script_syntax, element_obj)
@@ -225,8 +225,8 @@ class JavaScript:
         Description: Return the all child elements object of given element
         """
         script = "return arguments[0].childNodes"
-        parent_element = self._driver.execute_script(script, element_obj)
-        return parent_element
+        child_element = self._driver.execute_script(script, element_obj)
+        return child_element
 
     def get_highlighted_text(self):
         """

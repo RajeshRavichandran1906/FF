@@ -12,7 +12,7 @@ class Assertions:
         self._unittest = unittest.TestCase()
         self._infra_utils = InfrastructureUtils()
 
-    def as_List_equal(self, *params):
+    def as_List_equal(self, *params) -> None:
         try:
             self._unittest.assertListEqual(params[0], params[1], params[2])
             self._infra_utils.logging().info(params[2] + " - PASSED.")
@@ -25,7 +25,7 @@ class Assertions:
             Global_variables.assertion_failure_list.append(msg)
             Global_variables.assert_failure_count += 1
 
-    def as_equal(self, *params):
+    def as_equal(self, *params) -> None:
         try:
             self._unittest.assertEqual(params[0], params[1], params[2])
             self._infra_utils.logging().info(params[2] + " - PASSED.")
@@ -38,7 +38,7 @@ class Assertions:
             Global_variables.assertion_failure_list.append(msg)
             Global_variables.assert_failure_count += 1
 
-    def as_not_equal(self, *params):
+    def as_not_equal(self, *params) -> None:
         try:
             self._unittest.assertNotEqual(params[0], params[1], params[2])
             self._infra_utils.logging().info(params[2] + " - PASSED.")
@@ -51,7 +51,7 @@ class Assertions:
             Global_variables.assertion_failure_list.append(msg)
             Global_variables.assert_failure_count += 1
 
-    def as_in(self, *params):
+    def as_in(self, *params) -> None:
         try:
             assert params[0] in params[1], params[2]
             self._infra_utils.logging().info(params[2] + " - PASSED.")
@@ -64,7 +64,7 @@ class Assertions:
             Global_variables.assertion_failure_list.append(msg)
             Global_variables.assert_failure_count += 1
 
-    def as_not_in(self, *params):
+    def as_not_in(self, *params) -> None:
         try:
             assert params[0] not in params[1], params[2]
             self._infra_utils.logging().info(params[2] + " - PASSED.")
@@ -77,7 +77,7 @@ class Assertions:
             Global_variables.assertion_failure_list.append(msg)
             Global_variables.assert_failure_count += 1
 
-    def as_GE(self, *params):
+    def as_GE(self, *params) -> None:
         try:
             self._unittest.assertGreaterEqual(params[0], params[1], params[2])
             self._infra_utils.logging().info(params[2] + " - PASSED.")
@@ -91,7 +91,7 @@ class Assertions:
             Global_variables.assertion_failure_list.append(msg)
             Global_variables.assert_failure_count += 1
 
-    def as_LE(self, *params):
+    def as_LE(self, *params) -> None:
         try:
             self._unittest.assertLessEqual(params[0], params[1], params[2])
             self._infra_utils.logging().info(params[2] + " - PASSED.")

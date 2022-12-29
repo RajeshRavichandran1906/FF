@@ -12,7 +12,8 @@ class AutomationPage(BasePage):
         self.web_utils.wait_for_element_text(self._locators.parent, text, self.global_variables.medium_wait)
 
     def verify_automation_page_displayed(self, step):
-        self.web_utils.verify_element_is_visible(self.web_utils.get_object(self._locators.texts, "Automation Page"), "Automation Page", step)
+        automation_obj = self.web_utils.validate_and_get_webdriver_object_using_locator(self._locators.texts, "Automation Page")
+        self.web_utils.verify_element_is_visible(automation_obj, "Automation Page", step)
         self.assertion.as_equal(1, 1, "Step 3.2:")
         self.assertion.as_equal(1, 1, "Step 3.3:")
         self.assertion.as_equal(1, 1, "Step 3.4:")

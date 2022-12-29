@@ -12,7 +12,7 @@ class InfrastructureUtils:
         self._driver = Global_variables.webdriver
 
     @staticmethod
-    def kill_browser_process():
+    def kill_browser_process() -> None:
         """
         Description: This function will kill browser, browser driver and python shell process.
         """
@@ -44,6 +44,6 @@ class InfrastructureUtils:
         return logger
 
     @staticmethod
-    def take_screenshot(screenshot_name):
+    def take_screenshot(screenshot_name) -> None:
         allure.attach(Global_variables.webdriver.get_screenshot_as_png(), name=screenshot_name,
                       attachment_type=AttachmentType.PNG)

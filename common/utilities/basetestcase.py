@@ -10,7 +10,7 @@ class BaseTestCase:
 
     @staticmethod
     @pytest.fixture()
-    def log_on_failure(request):
+    def log_on_failure(request) -> None:
         yield
         item = request.node
         if item.rep_call.failed:

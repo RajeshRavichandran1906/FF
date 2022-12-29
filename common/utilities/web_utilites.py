@@ -15,6 +15,10 @@ from common.utilities.global_variables import Global_variables
 
 class WebElementUtils:
 
+    @property
+    def click(self):
+        return Click()
+
     def __init__(self):
         self._assert = Assertions()
         self._javascript = JavaScript()
@@ -34,13 +38,17 @@ class WebElementUtils:
         """
         Description: Verify the visible number of elements
         """
-        elements = self.get_objects(elements_instance, parent_instance)
+        elements = self._get_objects(elements_instance, parent_instance)
         actual_count = sum([1 for element in elements if element.is_displayed()])
         self._assert.as_equal(expected_count, actual_count, msg)
 
     def get_elements_text(self, elements_instance, parent_instance=None):
-
-        elements_instance = self.get_objects(elements_instance, parent_instance)
+        """
+        :param elements_instance: Web Element whose text need to be fetched
+        :param parent_instance: Parent instance web element if any
+        :return: List of text of web element
+        """
+        elements_instance = self._get_objects(elements_instance, parent_instance)
         return [element.text.strip() for element in elements_instance if element.is_displayed()]
 
     def wait_for_element_text(self, locator, element_text, time_out, pause_time=0, case_sensitive=False,
@@ -112,7 +120,7 @@ class WebElementUtils:
                 pass
             time.sleep(0.5)
 
-    def get_objects(self, element_instance, parent_instance=None):
+    def _get_objects(self, element_instance, parent_instance=None):
 
         is_locator = isinstance(element_instance, tuple) and len(element_instance) == 2
         if is_locator:
@@ -124,7 +132,7 @@ class WebElementUtils:
         else:
             raise TypeError("Element instance should be WebElements list or Locator")
 
-    def get_object(self, element_instance, element_name):
+    def _get_object(self, element_instance, element_name):
 
         is_locator = isinstance(element_instance, tuple) and len(element_instance) == 2
         if is_locator:
@@ -139,7 +147,7 @@ class WebElementUtils:
         Description: This function will left click on the element option based on element name
         :Usage - select_object_based_on_name()
         """
-        element_objects = self.get_objects(element_instance, parent_instance)
+        element_objects = self._get_objects(element_instance, parent_instance)
         vis_ele_objects = [actual_ele_obj for actual_ele_obj in element_objects if actual_ele_obj.is_displayed()]
         element_index = self._javascript.find_element_index_by_text(vis_ele_objects, element_name)
         if element_index is not None and element_index != '':
@@ -239,7 +247,8 @@ class WebElementUtils:
                 webdriver_object_name, locator)
             raise AttributeError(display_msg)
 
-    def validate_and_get_webdriver_objects_using_locator(self, locator, webdriver_objects_reference_name, parent_object=None):
+    def validate_and_get_webdriver_objects_using_locator(self, locator, webdriver_objects_reference_name,
+                                                         parent_object=None):
         """
         This function is used to verify the list of webdriver elements in the page
         css_locator: css will be provided by User((#TableChart_1)
@@ -267,7 +276,17 @@ class WebElementUtils:
         msg = "Step {0}: Verify {1} is displayed".format(step_num, element_name)
         self._assert.as_equal(True, status, msg)
 
-    def left_click(self, web_element, xoffset=0, yoffset=0, action_chain_click=False, pause_time=1):
+
+"""----------------------------------------------Click Methods------------------------------------------------------"""
+
+
+class Click:
+
+    def __init__(self):
+        self._driver = Global_variables.webdriver
+        self._actions = ActionChains(self._driver)
+
+    def left(self, web_element, xoffset=0, yoffset=0, action_chain_click=False, pause_time=1):
         """
         Desc:- This function will click on any web_element on a specified location using option ActionChains and webelement click
         :param web_element: webelement where left click need to be performed
@@ -281,6 +300,3 @@ class WebElementUtils:
         else:
             web_element.click()
         time.sleep(pause_time)
-
-
-

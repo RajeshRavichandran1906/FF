@@ -4,3 +4,4 @@ assets
 venv/
 .pytest_cache
 geckodriver.log
+target
