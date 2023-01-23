@@ -22,6 +22,7 @@ class WebElementUtils:
     def __init__(self):
         self._assert = Assertions()
         self._javascript = JavaScript()
+
         self._driver = Global_variables.webdriver
         self._actions = ActionChains(self._driver)
 
@@ -293,6 +294,7 @@ class Click:
         :param xoffset: xoffset if needed
         :param yoffset: yoffset if needed
         :param action_chain_click: True if Action chains click
+        :param pause_time: Time with pause after click is performed
         :return: None
         """
         if action_chain_click:
